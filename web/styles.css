@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+html, body {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: rgb(6, 51, 44);
+}
+
+.otsikko {
+  color: white
+}
+
+#taulunKoko, #merkkienmaara, #aloita {
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin-right: 0.2rem;
+  margin-bottom: 0.1rem;
+  background-color: rgb(186, 243, 243);
+}
+
+#taulunKoko:hover, #merkkienmaara:hover, #aloita:hover {
+  background-color: white;
+}
+
+#vuoro {
+  color: white;
+  font-size: 1.2rem;
+}
+
+table {
+  background-color: rgb(186, 243, 243);
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid black;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+}
+
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
