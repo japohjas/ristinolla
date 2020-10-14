@@ -6,7 +6,7 @@ Created from templates made available by Stagehand under a BSD-style
 
 9.10.2020 Jari Pohjasmäki
 
-ristinolla/ jätkänshakki.
+Ristinolla/ jätkänshakki.
 Jos tätä haluaa pelata yksin, valitse esim. Taulun koko: 5 X 5, Merkkiä peräkkäin: 3 -> 
 lopputulokseksi pitää saada tasapeli.
 

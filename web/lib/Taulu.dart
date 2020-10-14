@@ -1,16 +1,23 @@
 import 'dart:html';
 
-// 9.10.2020 Jari Pohjasmäki japohjas@gmail.com
-// koordinatit kahdessa Map taulussa on muodossa x:y, pelin vasen ylänurkka = 0:0
-// voittavarivi kerätään listaan
-// tarkastuksessa skannataan pelilauta läpi, x, y, kaakko, lounas
+/* 
+9.10.2020 Jari Pohjasmäki japohjas@gmail.com
+Koordinatit kahdessa Map taulussa on muodossa x:y, pelin vasen ylänurkka = 0:0.
+Voittavarivi kerätään listaan tarkastuksen yhteydessä.
+Tarkastuksessa skannataan pelilauta läpi, x, y, kaakko, lounas.
+Pelin loputtua taulukot tyhjennetään.
+14.10.2020 v2.0
+*/
 
 class Taulu {
-  int koko; // pelilaudan koko
-  var taulukko = {}; // avain koordinaatit, arvo merkki. Alustuksessa arvot = ?
-  var paikkaElementti =
-      {}; // pelin kuluessa tänne kerätään: avain koordinaatti arvo elementti
-  int merkkiaPerakkain; // kuinka monta merkkiä pitää olla peräkkäin että peli päättyy
+  // pelilaudan koko
+  int koko;
+  // avain koordinaatit, arvo merkki. Alustuksessa arvot = ?
+  var taulukko = {};
+  // pelin kuluessa tänne kerätään: avain koordinaatti arvo elementti
+  var paikkaElementti = {};
+  // kuinka monta merkkiä pitää olla peräkkäin pelin päättymiseen voittoon
+  int merkkiaPerakkain;
   bool peliKaynnissa = true;
 
   Taulu(this.koko, this.merkkiaPerakkain);
@@ -31,11 +38,12 @@ class Taulu {
         querySelector('#taulu').children.add(elementti);
 
         elementti.onClick.listen((event) {
-          if ((taulukko[paikka] == '?') && peliKaynnissa) {
+          if (peliKaynnissa && (taulukko[paikka] == '?')) {
             elementti.text = merkki;
             taulukko[paikka] = merkki;
             // print('$paikka -> ${taulukko[paikka]}');
             paikkaElementti[paikka] = elementti;
+            // jos löytyy voittavarivi -> peliKaynnissa = false
             pelitilanteenTarkastus(merkki);
 
             if (peliKaynnissa) {
@@ -44,9 +52,11 @@ class Taulu {
             } else {
               querySelector('#vuoro').text = '$merkki voitti';
             }
-            if ((!taulukko.values.contains('?')) && peliKaynnissa) {
+
+            if (peliKaynnissa && (!taulukko.values.contains('?'))) {
               querySelector('#vuoro').text = 'tasapeli';
               peliKaynnissa = false;
+              tyhjennaTaulukot();
             }
           }
         });
@@ -62,19 +72,29 @@ class Taulu {
   }
 
   void naytaVoittavarivi(voittavarivi) {
-    peliKaynnissa = false;
-
     for (var paikka in voittavarivi) {
       var elementti = paikkaElementti[paikka];
       elementti.style.backgroundColor = 'green';
       elementti.style.color = 'white';
     }
+
+    peliKaynnissa = false;
   }
 
   void pelitilanteenTarkastus(merkki) {
     tarkastusXY(merkki);
     tarkastusKaakko(merkki);
     tarkastusLounas(merkki);
+
+    if (!peliKaynnissa) {
+      tyhjennaTaulukot();
+    }
+  }
+
+  void tyhjennaTaulukot() {
+    taulukko.clear();
+    paikkaElementti.clear();
+    // print('$taulukko $paikkaElementti');
   }
 
   // tarkastus x ja y tasossa

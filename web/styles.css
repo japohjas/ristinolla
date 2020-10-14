@@ -11,7 +11,7 @@ html, body {
 }
 
 .otsikko {
-  color: white
+  color: lightgray;
 }
 
 #taulunKoko, #merkkienmaara, #aloita {

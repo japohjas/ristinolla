@@ -1,11 +1,14 @@
 import 'dart:html';
 import 'lib/Taulu.dart';
-// 8.10.2020 Jari Pohjasmäki japohjas@gmail.com
-// taulun piirto automaattinen, tarkastus automaattinen.
-// taulun koko valittavissa, se kuinka monta pitää saada peräkkäin,
-// alekkain tai ristikkäin valittavissa.
-// koko = taulun koko
-// merkit = kuinka monta merkkiä tarvitaan peräkkäin että peli päättyy
+/*
+8.10.2020 Jari Pohjasmäki japohjas@gmail.com
+Taulun piirto ja tarkastus automaattinen.
+Taulun koko valittavissa.
+Kuinka monta merkkiä pitää saada peräkkäin valittavissa.
+koko = taulun koko
+merkit = kuinka monta merkkiä tarvitaan peräkkäin että peli päättyy
+14.10.2020 v2.0
+*/
 
 void main() {
   var peli = {
