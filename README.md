@@ -1,6 +1,7 @@
 An absolute bare-bones web app.
 
-
+Created from templates made available by Stagehand under a BSD-style
+[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
 
 9.10.2020 Jari Pohjasmäki
 
