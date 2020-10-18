@@ -1,3 +1,5 @@
+© Jari Pohjasmäki 2020 japohjas@gmail.com
+
 An absolute bare-bones web app.
 
 Created from templates made available by Stagehand under a BSD-style
