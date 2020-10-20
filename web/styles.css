@@ -12,23 +12,19 @@ html, body {
 
 .otsikko {
   color: lightgray;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 #taulunKoko, #merkkienmaara, #aloita {
   font-size: 1rem;
-  padding: 0.3rem;
-  margin-right: 0.2rem;
-  margin-bottom: 0.1rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
   background-color: rgb(186, 243, 243);
 }
 
 #taulunKoko:hover, #merkkienmaara:hover, #aloita:hover {
   background-color: white;
-}
-
-#peli {
-  color: lightgray;
-  font-size: 0.9rem;
 }
 
 #vuoro {
@@ -46,8 +42,8 @@ td {
   display: table-cell;
   vertical-align: middle;
   font-size: 2rem;
-  width: 60px;
-  height: 60px;
+  width: 3rem;
+  height: 3rem;
 }
 
 table.center {

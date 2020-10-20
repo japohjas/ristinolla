@@ -24,9 +24,8 @@ class Taulu {
 
   void alustaTaulu() {
     var merkki = 'X';
-    querySelector('#taulu').children.clear();
-    querySelector('#peli').text = 'Voittoon $merkkiaPerakkain merkkiä.';
     querySelector('#vuoro').text = 'Vuoro - $merkki';
+    querySelector('#taulu').children.clear();
 
     for (var y = 0; y < koko; y++) {
       var rivi = Element.tag('tr');
