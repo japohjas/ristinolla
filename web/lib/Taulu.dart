@@ -25,7 +25,9 @@ class Taulu {
   void alustaTaulu() {
     var merkki = 'X';
     querySelector('#taulu').children.clear();
-    querySelector('#vuoro').text = 'vuoro: $merkki';
+    querySelector('#peli').text =
+        'Taulun koko ${koko}x${koko}, voittoon $merkkiaPerakkain merkkiä.';
+    querySelector('#vuoro').text = 'Vuoro - $merkki';
 
     for (var y = 0; y < koko; y++) {
       var rivi = Element.tag('tr');
@@ -48,7 +50,7 @@ class Taulu {
 
             if (peliKaynnissa) {
               merkki = merkinVaihto(merkki);
-              querySelector('#vuoro').text = 'vuoro: $merkki';
+              querySelector('#vuoro').text = 'Vuoro - $merkki';
             } else {
               querySelector('#vuoro').text = '$merkki voitti';
             }

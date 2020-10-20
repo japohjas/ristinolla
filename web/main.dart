@@ -22,7 +22,7 @@ void main() {
 void aloita(peli) {
   for (var i = 0; i < peli['koko'].length; i++) {
     OptionElement elementti = Element.option();
-    elementti.text = 'Taulun koko: ${peli['koko'][i]} x ${peli['koko'][i]}';
+    elementti.text = 'Taulun koko: ${peli['koko'][i]}x${peli['koko'][i]}';
     elementti.value = peli['koko'][i];
     querySelector('#taulunKoko').children.add(elementti);
   }
