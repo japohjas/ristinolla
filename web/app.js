@@ -2385,9 +2385,9 @@ ag:function(){var t,s,r,q,p,o,n,m,l,k,j,i,h,g=this,f="#taulu",e={}
 e.a="X"
 t=document
 J.aP(t.querySelector(f)).w(0)
-s=g.a
-J.ac(t.querySelector("#peli"),"Taulun koko "+H.f(s)+"x"+H.f(s)+", voittoon "+H.f(g.d)+" merkki\xe4.")
+J.ac(t.querySelector("#peli"),"Voittoon "+H.f(g.d)+" merkki\xe4.")
 J.ac(t.querySelector("#vuoro"),"Vuoro - X")
+s=g.a
 if(typeof s!=="number")return H.bz(s)
 r=u.h
 q=g.b

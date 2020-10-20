@@ -25,8 +25,7 @@ class Taulu {
   void alustaTaulu() {
     var merkki = 'X';
     querySelector('#taulu').children.clear();
-    querySelector('#peli').text =
-        'Taulun koko ${koko}x${koko}, voittoon $merkkiaPerakkain merkkiä.';
+    querySelector('#peli').text = 'Voittoon $merkkiaPerakkain merkkiä.';
     querySelector('#vuoro').text = 'Vuoro - $merkki';
 
     for (var y = 0; y < koko; y++) {
