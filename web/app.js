@@ -1615,12 +1615,12 @@ _.b=b
 _.c=c
 _.d=d}},F={
 dI:function(){var t=u.i
-F.f9(P.ec(["koko",H.a0(["3","5","7","9","11","13","15","19","21"],t),"merkit",H.a0(["3","4","5","6","7"],t)],u.j,u.f))},
+F.f9(P.ec(["koko",H.a0(["3","5","7","9","11","13","15","17","19","21","23"],t),"merkit",H.a0(["3","4","5","6","7"],t)],u.j,u.f))},
 f9:function(a){var t,s,r,q,p,o,n="koko",m="merkit"
 for(t=u.h,s=u.e,r=0;r<a.k(0,n).length;++r){q=s.a(t.a(W.c1("option",null)))
 p=a.k(0,n)
 if(r>=p.length)return H.p(p,r)
-p="Taulun koko: "+p[r]+" X "
+p="Taulun koko: "+p[r]+" x "
 o=a.k(0,n)
 if(r>=o.length)return H.p(o,r)
 C.h.sR(q,p+o[r])
@@ -2406,11 +2406,12 @@ W.cA(j.a,j.b,h,!1,i.c)}}},
 ao:function(a){if(a==="X")return"O"
 return"X"},
 C:function(a){var t,s,r,q,p
+this.e=!1
 for(t=a.length,s=this.c,r=0;r<a.length;a.length===t||(0,H.dL)(a),++r){q=s.k(0,a[r])
 p=q.style
 p.backgroundColor="green"
 p=q.style
-p.color="white"}this.e=!1},
+p.color="white"}},
 au:function(a){var t,s,r,q,p,o,n=this,m=[],l=[],k=n.a
 if(typeof k!=="number")return H.bz(k)
 t=n.d
