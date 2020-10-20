@@ -72,13 +72,13 @@ class Taulu {
   }
 
   void naytaVoittavarivi(voittavarivi) {
+    peliKaynnissa = false;
+
     for (var paikka in voittavarivi) {
       var elementti = paikkaElementti[paikka];
       elementti.style.backgroundColor = 'green';
       elementti.style.color = 'white';
     }
-
-    peliKaynnissa = false;
   }
 
   void pelitilanteenTarkastus(merkki) {
