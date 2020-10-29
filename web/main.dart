@@ -11,15 +11,15 @@ merkit = kuinka monta merkkiä tarvitaan peräkkäin että peli päättyy
 */
 
 void main() {
-  var peli = {
+  final _peli = {
     'koko': ['3', '5', '7', '9', '11', '13', '15', '17', '19', '21', '23'],
     'merkit': ['3', '4', '5', '6', '7']
   };
 
-  aloita(peli);
+  _aloita(_peli);
 }
 
-void aloita(peli) {
+void _aloita(peli) {
   for (var i = 0; i < peli['koko'].length; i++) {
     OptionElement elementti = Element.option();
     elementti.text = 'Taulun koko: ${peli['koko'][i]}x${peli['koko'][i]}';

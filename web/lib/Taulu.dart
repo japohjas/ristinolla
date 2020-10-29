@@ -11,52 +11,52 @@ Pelin loputtua taulukot tyhjennetään.
 
 class Taulu {
   // pelilaudan koko
-  int koko;
+  final int _koko;
   // avain koordinaatit, arvo merkki. Alustuksessa arvot = ?
-  var taulukko = {};
+  final Map _taulukko = {};
   // pelin kuluessa tänne kerätään: avain koordinaatti arvo elementti
-  var paikkaElementti = {};
+  final Map _paikkaElementti = {};
   // kuinka monta merkkiä pitää olla peräkkäin pelin päättymiseen voittoon
-  int merkkiaPerakkain;
-  bool peliKaynnissa = true;
+  final int _merkkiaPerakkain;
+  bool _peliKaynnissa = true;
 
-  Taulu(this.koko, this.merkkiaPerakkain);
+  Taulu(this._koko, this._merkkiaPerakkain);
 
   void alustaTaulu() {
     var merkki = 'X';
     querySelector('#vuoro').text = 'Vuoro - $merkki';
     querySelector('#taulu').children.clear();
 
-    for (var y = 0; y < koko; y++) {
+    for (var y = 0; y < _koko; y++) {
       var rivi = Element.tag('tr');
       querySelector('#taulu').children.add(rivi);
 
-      for (var x = 0; x < koko; x++) {
+      for (var x = 0; x < _koko; x++) {
         var elementti = Element.tag('td');
         var paikka = '$x:$y';
-        taulukko[paikka] = '?';
+        _taulukko[paikka] = '?';
         querySelector('#taulu').children.add(elementti);
 
         elementti.onClick.listen((event) {
-          if (peliKaynnissa && (taulukko[paikka] == '?')) {
+          if (_peliKaynnissa && (_taulukko[paikka] == '?')) {
             elementti.text = merkki;
-            taulukko[paikka] = merkki;
+            _taulukko[paikka] = merkki;
             // print('$paikka -> ${taulukko[paikka]}');
-            paikkaElementti[paikka] = elementti;
+            _paikkaElementti[paikka] = elementti;
             // jos löytyy voittavarivi -> peliKaynnissa = false
-            pelitilanteenTarkastus(merkki);
+            _pelitilanteenTarkastus(merkki);
 
-            if (peliKaynnissa) {
-              merkki = merkinVaihto(merkki);
+            if (_peliKaynnissa) {
+              merkki = _merkinVaihto(merkki);
               querySelector('#vuoro').text = 'Vuoro - $merkki';
             } else {
               querySelector('#vuoro').text = '$merkki voitti';
             }
 
-            if (peliKaynnissa && (!taulukko.values.contains('?'))) {
+            if (_peliKaynnissa && (!_taulukko.values.contains('?'))) {
               querySelector('#vuoro').text = 'tasapeli';
-              peliKaynnissa = false;
-              tyhjennaTaulukot();
+              _peliKaynnissa = false;
+              _tyhjennaTaulukot();
             }
           }
         });
@@ -64,50 +64,50 @@ class Taulu {
     }
   }
 
-  String merkinVaihto(String merkki) {
+  String _merkinVaihto(String merkki) {
     if (merkki == 'X') {
       return 'O';
     }
     return 'X';
   }
 
-  void naytaVoittavarivi(voittavarivi) {
-    peliKaynnissa = false;
+  void _naytaVoittavarivi(voittavarivi) {
+    _peliKaynnissa = false;
 
     for (var paikka in voittavarivi) {
-      var elementti = paikkaElementti[paikka];
+      var elementti = _paikkaElementti[paikka];
       elementti.style.backgroundColor = 'green';
       elementti.style.color = 'white';
     }
   }
 
-  void pelitilanteenTarkastus(merkki) {
-    tarkastusXY(merkki);
-    tarkastusKaakko(merkki);
-    tarkastusLounas(merkki);
+  void _pelitilanteenTarkastus(merkki) {
+    _tarkastusXY(merkki);
+    _tarkastusKaakko(merkki);
+    _tarkastusLounas(merkki);
 
-    if (!peliKaynnissa) {
-      tyhjennaTaulukot();
+    if (!_peliKaynnissa) {
+      _tyhjennaTaulukot();
     }
   }
 
-  void tyhjennaTaulukot() {
-    taulukko.clear();
-    paikkaElementti.clear();
+  void _tyhjennaTaulukot() {
+    _taulukko.clear();
+    _paikkaElementti.clear();
     // print('$taulukko $paikkaElementti');
   }
 
   // tarkastus x ja y tasossa
-  void tarkastusXY(String merkki) {
+  void _tarkastusXY(String merkki) {
     var laskuKaynnissaX = false;
     var laskuKaynnissaY = false;
     var voittavariviX = [];
     var voittavariviY = [];
 
-    for (var y = 0; y < koko; y++) {
-      for (var x = 0; x < koko; x++) {
+    for (var y = 0; y < _koko; y++) {
+      for (var x = 0; x < _koko; x++) {
         // x-taso
-        if (taulukko['$x:$y'] == merkki) {
+        if (_taulukko['$x:$y'] == merkki) {
           voittavariviX.add('$x:$y');
           laskuKaynnissaX = true;
           // print('samojenmäärä X = $samojenMaaraX');
@@ -115,7 +115,7 @@ class Taulu {
           voittavariviX.clear();
         }
         // y-taso
-        if (taulukko['$y:$x'] == merkki) {
+        if (_taulukko['$y:$x'] == merkki) {
           voittavariviY.add('$y:$x');
           laskuKaynnissaY = true;
           // print('samojenmäärä Y = $samojenMaaraY');
@@ -123,13 +123,13 @@ class Taulu {
           voittavariviY.clear();
         }
 
-        if (voittavariviX.length == merkkiaPerakkain) {
+        if (voittavariviX.length == _merkkiaPerakkain) {
           // print(voittavariviX);
-          naytaVoittavarivi(voittavariviX);
+          _naytaVoittavarivi(voittavariviX);
         }
-        if (voittavariviY.length == merkkiaPerakkain) {
+        if (voittavariviY.length == _merkkiaPerakkain) {
           // print(voittavariviY);
-          naytaVoittavarivi(voittavariviY);
+          _naytaVoittavarivi(voittavariviY);
         }
       }
 
@@ -140,25 +140,25 @@ class Taulu {
     }
   }
 
-  void tarkastusKaakko(String merkki) {
+  void _tarkastusKaakko(String merkki) {
     var laskuKaynnissa = false;
     var voittavarivi = [];
     var i = 0;
 
     // 0:0 -> 8:8 keski + vasen kaakko \
-    for (var j = 0; j < koko; j++) {
-      while (i < koko - j) {
+    for (var j = 0; j < _koko; j++) {
+      while (i < _koko - j) {
         var y = i + j;
         // print('$i:$y');
-        if (taulukko['$i:$y'] == merkki) {
+        if (_taulukko['$i:$y'] == merkki) {
           voittavarivi.add('$i:$y');
           laskuKaynnissa = true;
         } else if (laskuKaynnissa) {
           voittavarivi.clear();
         }
 
-        if (voittavarivi.length == merkkiaPerakkain) {
-          naytaVoittavarivi(voittavarivi);
+        if (voittavarivi.length == _merkkiaPerakkain) {
+          _naytaVoittavarivi(voittavarivi);
         }
 
         i++;
@@ -174,19 +174,19 @@ class Taulu {
     // 2:0
     i = 1;
     var y = 0;
-    for (var j = 0; j < koko; j++) {
-      while (i < koko) {
+    for (var j = 0; j < _koko; j++) {
+      while (i < _koko) {
         y = i - 1 - j;
         //print('$i:$y');
-        if (taulukko['$i:$y'] == merkki) {
+        if (_taulukko['$i:$y'] == merkki) {
           voittavarivi.add('$i:$y');
           laskuKaynnissa = true;
         } else if (laskuKaynnissa) {
           voittavarivi.clear();
         }
 
-        if (voittavarivi.length == merkkiaPerakkain) {
-          naytaVoittavarivi(voittavarivi);
+        if (voittavarivi.length == _merkkiaPerakkain) {
+          _naytaVoittavarivi(voittavarivi);
         }
         i++;
       }
@@ -197,26 +197,26 @@ class Taulu {
     }
   }
 
-  void tarkastusLounas(String merkki) {
+  void _tarkastusLounas(String merkki) {
     var laskuKaynnissa = false;
     var voittavarivi = [];
 
     // 8:0 7:1 6:2 5:3 4:4 3:5 2:6 1:7 0:8  //keskilinja -> alas asti
     // 8:1 7:2 6:3 5:4 4:5 3:6 2:7 1:8      // yksi alaspäin
-    for (var j = 0; j < koko; j++) {
-      var i = koko - 1;
+    for (var j = 0; j < _koko; j++) {
+      var i = _koko - 1;
       var y = j;
       while ((i - j) >= 0) {
         // print('$i:$y');
-        if (taulukko['$i:$y'] == merkki) {
+        if (_taulukko['$i:$y'] == merkki) {
           voittavarivi.add('$i:$y');
           laskuKaynnissa = true;
         } else if (laskuKaynnissa) {
           voittavarivi.clear();
         }
 
-        if (voittavarivi.length == merkkiaPerakkain) {
-          naytaVoittavarivi(voittavarivi);
+        if (voittavarivi.length == _merkkiaPerakkain) {
+          _naytaVoittavarivi(voittavarivi);
         }
         i--;
         y++;
@@ -231,20 +231,20 @@ class Taulu {
 
     // 7:0 6:1 5:2 4:3 3:4 2:5 1:6 0:7  // yksi ylöspäin -> ylös asti
     // 6:0 5:1 4:2 3:3 2:4 1:5 0:6
-    for (var j = 0; j < koko; j++) {
-      var i = koko - 2 - j;
+    for (var j = 0; j < _koko; j++) {
+      var i = _koko - 2 - j;
       var y = 0;
       while (i >= 0) {
         //print('$i:$y');
-        if (taulukko['$i:$y'] == merkki) {
+        if (_taulukko['$i:$y'] == merkki) {
           voittavarivi.add('$i:$y');
           laskuKaynnissa = true;
         } else if (laskuKaynnissa) {
           voittavarivi.clear();
         }
 
-        if (voittavarivi.length == merkkiaPerakkain) {
-          naytaVoittavarivi(voittavarivi);
+        if (voittavarivi.length == _merkkiaPerakkain) {
+          _naytaVoittavarivi(voittavarivi);
         }
         i--;
         y++;
